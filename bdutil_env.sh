@@ -42,8 +42,8 @@ GCE_ZONE=''
 GCE_IMAGE=''
 # These are the normal gcloud compute image flags documented here:
 # https://cloud.google.com/sdk/gcloud/reference/compute/instances/create
-GCE_IMAGE_FAMILY='debian-8'
-GCE_IMAGE_PROJECT='debian-cloud'
+GCE_IMAGE_FAMILY='ubuntu-1804-lts'
+GCE_IMAGE_PROJECT='ubuntu-os-cloud'
 # When setting a network it's important for all nodes be able to communicate
 # with eachother and for SSH connections to be allowed inbound to complete
 # cluster setup and configuration.
@@ -424,6 +424,7 @@ COMMAND_GROUPS=(
   "
 
   "deploy-core-setup:
+     libexec/update_keys.sh
      libexec/install_java.sh
      libexec/mount_disks.sh
      libexec/setup_hadoop_user.sh

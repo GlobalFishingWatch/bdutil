@@ -795,7 +795,8 @@ function create_cluster() {
 
   local image_flags=""
   if [[ -n "${GCE_IMAGE}" ]]; then
-    image_flags="--image=${GCE_IMAGE}"
+    image_flags="--image=${GCE_IMAGE} \
+        --image-project=${GCE_IMAGE_PROJECT}"
   else
     image_flags="--image-family=${GCE_IMAGE_FAMILY} \
         --image-project=${GCE_IMAGE_PROJECT}"
