@@ -131,6 +131,9 @@ EOF
   elif [[ -x /usr/lib/insserv/insserv ]]; then
     ln -s /usr/lib/insserv/insserv /sbin/insserv
     insserv ${INIT_SCRIPT}
+  elif which systemctl; then
+    systemctl enable hadoop-${DAEMON}
+    systemctl start hadoop-${DAEMON}
   else
     echo "No boot process configuration tool found." >&2
     exit 1

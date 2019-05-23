@@ -19,11 +19,17 @@
 set -e
 
 # Install Snappy native libs first:
-install_application "libsnappy1" "snappy"
+install_application "libsnappy1v5" "snappy"
 install_application "libsnappy-dev" "snappy-devel"
 
 # We'll use this to get architecture information later
 install_application "file"
+
+# Install python
+install_application "python-minimal" "python"
+install_application "python-pip" "pip"
+install_application "libgdal-dev" "libgdal-dev"
+install_application "build-essential" "build-essential"
 
 INSTALL_TMP_DIR=${INSTALL_TMP_DIR}/hadoop-$(date +%s)
 mkdir -p ${INSTALL_TMP_DIR}
@@ -105,7 +111,7 @@ function install_snappy_links_to() {
 
     for libdir in /usr/lib /usr/lib64; do
       if [[ -d ${libdir} ]]; then
-        find ${libdir} -maxdepth 1 -name 'libsnappy*' \
+        find ${libdir} -maxdepth 3 -name 'libsnappy*' \
             | xargs -r ln -s -t "${target}"
       fi
     done
